@@ -5,7 +5,7 @@ module.exports = function(grunt)
         pkg: grunt.file.readJSON("package.json"),
         jshint: {
             
-            files: ["Gruntfile.js", "src/**/*.js", "test/**/*.js"],
+            files: [ "Gruntfile.js", "src/**/*.js", "test/**/*.js" ],
             options: {
                 
                 esversion: 6,
@@ -19,7 +19,7 @@ module.exports = function(grunt)
         },
         qunit: {
 
-            files: ["test/**/*.html"]
+            files: [ "test/**/*.html" ]
         },
         clean: [ "build/", "dist/" ],
         concat: {
@@ -65,8 +65,8 @@ module.exports = function(grunt)
         },
         watch: {
 
-            files: ["<%= jshint.files %>"],
-            tasks: ["jshint", "qunit"]
+            files: [ "<%= jshint.files %>" ],
+            tasks: [ "jshint", "qunit" ]
         }
     });
     
@@ -78,6 +78,6 @@ module.exports = function(grunt)
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-watch");
 
-    grunt.registerTask("test", ["jshint", "qunit"]);
-    grunt.registerTask("default", ["jshint", "qunit", "clean", "concat", "babel", "uglify"]);
+    grunt.registerTask("test", [ "jshint", "qunit" ]);
+    grunt.registerTask("default", [ "jshint", "qunit", "clean", "concat", "babel", "uglify" ]);
 };
