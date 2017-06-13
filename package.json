@@ -6,7 +6,7 @@
 	"author": "Bylothink",
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com:Byloth/jbyloth.git"
+		"url": "git+ssh://git@github.com:Byloth/jByloth.git"
 	},
 	"license": "UNLICENSED",
 	"private": true,
