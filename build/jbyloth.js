@@ -4,9 +4,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /*
  *                     jByloth v. 1.0.0
- * 
+ *
  *                Written by Bilotta Matteo.
- * 
+ *
  *  Copyright © 2015 - 2017, Bylothink. All rights reserved.
  */
 
@@ -82,10 +82,14 @@ if (typeof jQuery === "undefined") {
         if (typeof value === "number") {
             return parseInt(value);
         } else if (typeof value === "string") {
-            var hexValue = parseInt(value, 16);
+            if (value.startsWith("0") === true) {
+                value = value.substr(1);
+            }
 
-            if (hexValue.toString(16) === value.toLowerCase()) {
-                return hexValue;
+            var _hexValue = parseInt(value, 16);
+
+            if (_hexValue.toString(16) === value.toLowerCase()) {
+                return _hexValue;
             }
         }
     };
@@ -105,19 +109,19 @@ if (typeof jQuery === "undefined") {
 
         // Private single instance methods:
         var _isAlphaValid = function _isAlphaValid(value) {
-            var parsedValue = _parseFloat(value);
+            var _parsedValue = _parseFloat(value);
 
-            if (_isUndefined(parsedValue) === false) {
-                return parsedValue >= MIN_VALUE && parsedValue <= MAX_ALPHA_VALUE;
+            if (_isUndefined(_parsedValue) === false) {
+                return _parsedValue >= MIN_VALUE && _parsedValue <= MAX_ALPHA_VALUE;
             } else {
                 return false;
             }
         };
         var _isColorValid = function _isColorValid(value) {
-            var parsedValue = _parseInt(value);
+            var _parsedValue = _parseInt(value);
 
-            if (_isUndefined(parsedValue) === false) {
-                return parsedValue >= MIN_VALUE && parsedValue <= MAX_COLOR_VALUE;
+            if (_isUndefined(_parsedValue) === false) {
+                return _parsedValue >= MIN_VALUE && _parsedValue <= MAX_COLOR_VALUE;
             } else {
                 return false;
             }
@@ -152,23 +156,23 @@ if (typeof jQuery === "undefined") {
                     }
                 } else if (typeof props.r === "string") {
                     if (props.r.length === 6) {
-                        var matches = props.r.match(/.{1,2}/g);
+                        var _matches = props.r.match(/.{1,2}/g);
 
                         _init({
 
-                            r: matches[0],
-                            g: matches[1],
-                            b: matches[2],
+                            r: _matches[0],
+                            g: _matches[1],
+                            b: _matches[2],
                             a: props.g
                         });
                     } else if (props.r.length === 3) {
-                        var _matches = props.r.match(/.{1,1}/g);
+                        var _matches2 = props.r.match(/.{1,1}/g);
 
                         _init({
 
-                            r: _matches[0] + _matches[0],
-                            g: _matches[1] + _matches[1],
-                            b: _matches[2] + _matches[2],
+                            r: _matches2[0] + _matches2[0],
+                            g: _matches2[1] + _matches2[1],
+                            b: _matches2[2] + _matches2[2],
                             a: props.g
                         });
                     } else {
@@ -196,31 +200,31 @@ if (typeof jQuery === "undefined") {
                         }
                     }
                 } else {
-                    var _r2 = _r.toString(16);
-                    var _g2 = _g.toString(16);
-                    var _b2 = _b.toString(16);
+                    var _rString = _r.toString(16);
+                    var _gString = _g.toString(16);
+                    var _bString = _b.toString(16);
 
-                    if (_r2.length === 1) {
-                        _r2 = "0" + _r2;
+                    if (_rString.length === 1) {
+                        _rString = "0" + _rString;
                     }
-                    if (_g2.length === 1) {
-                        _g2 = "0" + _g2;
+                    if (_gString.length === 1) {
+                        _gString = "0" + _gString;
                     }
-                    if (_b2.length === 1) {
-                        _b2 = "0" + _b2;
+                    if (_bString.length === 1) {
+                        _bString = "0" + _bString;
                     }
 
-                    return "#" + _r2 + _g2 + _b2;
+                    return "#" + _rString + _gString + _bString;
                 }
             };
 
             // Object initialization...
-            var props = void 0;
+            var _props = void 0;
 
             if ((typeof r === "undefined" ? "undefined" : _typeof(r)) === "object") {
                 if (jQuery.isArray(r) === true) {
                     if (r.length === 3) {
-                        props = {
+                        _props = {
 
                             r: r[0],
                             g: r[1],
@@ -231,7 +235,7 @@ if (typeof jQuery === "undefined") {
                         throw new Error("Something went wrong!");
                     }
                 } else {
-                    props = {
+                    _props = {
 
                         r: r.r,
                         g: r.g,
@@ -240,7 +244,7 @@ if (typeof jQuery === "undefined") {
                     };
                 }
             } else {
-                props = {
+                _props = {
 
                     r: r,
                     g: g,
@@ -249,7 +253,7 @@ if (typeof jQuery === "undefined") {
                 };
             }
 
-            _init(props);
+            _init(_props);
         };
 
         // Exposing class...
@@ -266,24 +270,24 @@ if (typeof jQuery === "undefined") {
     // String class:
     // Public static methods:
     String.random = function (length) {
-        var randomString = "";
+        var _randomString = "";
 
         if (_isUndefined(length) === true) {
             length = MAX_CHARS;
         }
 
         for (var index = 0; index < length; index += 1) {
-            var charset = Math.floor(Math.random() * ALLOWED_CHARS.length);
+            var _charSet = Math.floor(Math.random() * ALLOWED_CHARS.length);
 
-            var minCode = ALLOWED_CHARS[charset][0];
-            var maxCode = ALLOWED_CHARS[charset][1] + 1;
+            var _minCode = ALLOWED_CHARS[_charSet][0];
+            var _maxCode = ALLOWED_CHARS[_charSet][1] + 1;
 
-            var charCode = Math.floor(Math.random() * (maxCode - minCode) + minCode);
+            var _charCode = Math.floor(Math.random() * (_maxCode - _minCode) + _minCode);
 
-            randomString += String.fromCharCode(charCode);
+            _randomString += String.fromCharCode(_charCode);
         }
 
-        return randomString;
+        return _randomString;
     };
 
     // Public methods:
@@ -296,9 +300,9 @@ if (typeof jQuery === "undefined") {
     };
 
     String.prototype.endsWith = function (searchString) {
-        var sliceLength = -searchString.length;
+        var _sliceLength = -searchString.length;
 
-        return this.slice(sliceLength) === searchString;
+        return this.slice(_sliceLength) === searchString;
     };
 
     String.prototype.escapeRegExp = function () {

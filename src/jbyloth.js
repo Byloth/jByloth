@@ -1,13 +1,13 @@
 /*
  *                     jByloth v. 1.0.0
- * 
+ *
  *                Written by Bilotta Matteo.
- * 
+ *
  *  Copyright © 2015 - 2017, Bylothink. All rights reserved.
  */
 
 // Checking if jQuery is available...
-    if (typeof(jQuery) === "undefined")
+if (typeof(jQuery) === "undefined")
     {
         throw new Error("jQuery is required by jByloth to be executed.");
     }
@@ -106,11 +106,16 @@
                 }
                 else if (typeof(value) === "string")
                 {
-                    let hexValue = parseInt(value, 16);
-
-                    if (hexValue.toString(16) === value.toLowerCase())
+                    if (value.startsWith("0") === true)
                     {
-                        return hexValue;
+                        value = value.substr(1);
+                    }
+                    
+                    let _hexValue = parseInt(value, 16);
+
+                    if (_hexValue.toString(16) === value.toLowerCase())
+                    {
+                        return _hexValue;
                     }
                 }
             };
@@ -134,11 +139,11 @@
                 // Private single instance methods:
                     let _isAlphaValid = function(value)
                     {
-                        let parsedValue = _parseFloat(value);
+                        let _parsedValue = _parseFloat(value);
 
-                        if (_isUndefined(parsedValue) === false)
+                        if (_isUndefined(_parsedValue) === false)
                         {
-                            return ((parsedValue >= MIN_VALUE) && (parsedValue <= MAX_ALPHA_VALUE));
+                            return ((_parsedValue >= MIN_VALUE) && (_parsedValue <= MAX_ALPHA_VALUE));
                         }
                         else
                         {
@@ -147,11 +152,11 @@
                     };
                     let _isColorValid = function(value)
                     {
-                        let parsedValue = _parseInt(value);
+                        let _parsedValue = _parseInt(value);
 
-                        if (_isUndefined(parsedValue) === false)
+                        if (_isUndefined(_parsedValue) === false)
                         {
-                            return ((parsedValue >= MIN_VALUE) && (parsedValue <= MAX_COLOR_VALUE));
+                            return ((_parsedValue >= MIN_VALUE) && (_parsedValue <= MAX_COLOR_VALUE));
                         }
                         else
                         {
@@ -199,25 +204,25 @@
                                 {
                                     if (props.r.length === 6)
                                     {
-                                        let matches = props.r.match(/.{1,2}/g);
+                                        let _matches = props.r.match(/.{1,2}/g);
 
                                         _init({
 
-                                            r: matches[0],
-                                            g: matches[1],
-                                            b: matches[2],
+                                            r: _matches[0],
+                                            g: _matches[1],
+                                            b: _matches[2],
                                             a: props.g
                                         });
                                     }
                                     else if (props.r.length === 3)
                                     {
-                                        let matches = props.r.match(/.{1,1}/g);
+                                        let _matches = props.r.match(/.{1,1}/g);
 
                                         _init({
 
-                                            r: matches[0] + matches[0],
-                                            g: matches[1] + matches[1],
-                                            b: matches[2] + matches[2],
+                                            r: _matches[0] + _matches[0],
+                                            g: _matches[1] + _matches[1],
+                                            b: _matches[2] + _matches[2],
                                             a: props.g
                                         });
                                     }
@@ -262,29 +267,29 @@
                                 }
                                 else
                                 {
-                                    let r = _r.toString(16);
-                                    let g = _g.toString(16);
-                                    let b = _b.toString(16);
+                                    let _rString = _r.toString(16);
+                                    let _gString = _g.toString(16);
+                                    let _bString = _b.toString(16);
 
-                                    if (r.length === 1)
+                                    if (_rString.length === 1)
                                     {
-                                        r = "0"+ r;
+                                        _rString = "0"+ _rString;
                                     }
-                                    if (g.length === 1)
+                                    if (_gString.length === 1)
                                     {
-                                        g = "0"+ g;
+                                        _gString = "0"+ _gString;
                                     }
-                                    if (b.length === 1)
+                                    if (_bString.length === 1)
                                     {
-                                        b = "0"+ b;
+                                        _bString = "0"+ _bString;
                                     }
 
-                                    return "#" + r + g + b;
+                                    return "#" + _rString + _gString + _bString;
                                 }
                             };
 
                         // Object initialization...
-                            let props;
+                            let _props;
 
                             if (typeof(r) === "object")
                             {
@@ -292,7 +297,7 @@
                                 {
                                     if (r.length === 3)
                                     {
-                                        props = {
+                                        _props = {
 
                                             r: r[0],
                                             g: r[1],
@@ -307,7 +312,7 @@
                                 }
                                 else
                                 {
-                                    props = {
+                                    _props = {
 
                                         r: r.r,
                                         g: r.g,
@@ -318,7 +323,7 @@
                             }
                             else
                             {
-                                props = {
+                                _props = {
 
                                     r: r,
                                     g: g,
@@ -327,7 +332,7 @@
                                 };
                             }
 
-                            _init(props);
+                            _init(_props);
                     };
 
                 // Exposing class...
@@ -345,7 +350,7 @@
                     // Public static methods:
                         String.random = function(length)
                         {
-                            let randomString = "";
+                            let _randomString = "";
 
                             if (_isUndefined(length) === true)
                             {
@@ -354,17 +359,17 @@
 
                             for (let index = 0; index < length; index += 1)
                             {
-                                let charset = Math.floor(Math.random() * ALLOWED_CHARS.length);
+                                let _charSet = Math.floor(Math.random() * ALLOWED_CHARS.length);
 
-                                let minCode = ALLOWED_CHARS[charset][0];
-                                let maxCode = (ALLOWED_CHARS[charset][1] + 1);
+                                let _minCode = ALLOWED_CHARS[_charSet][0];
+                                let _maxCode = (ALLOWED_CHARS[_charSet][1] + 1);
 
-                                let charCode = Math.floor((Math.random() * (maxCode - minCode)) + minCode);
+                                let _charCode = Math.floor((Math.random() * (_maxCode - _minCode)) + _minCode);
 
-                                randomString += String.fromCharCode(charCode);
+                                _randomString += String.fromCharCode(_charCode);
                             }
 
-                            return randomString;
+                            return _randomString;
                         };
 
                     // Public methods:
@@ -380,9 +385,9 @@
 
                         String.prototype.endsWith = function(searchString)
                         {
-                            let sliceLength = -(searchString.length);
+                            let _sliceLength = -(searchString.length);
 
-                            return (this.slice(sliceLength) === searchString);
+                            return (this.slice(_sliceLength) === searchString);
                         };
 
                         String.prototype.escapeRegExp = function()
