@@ -7,7 +7,7 @@
  */
 
 // Checking if jQuery is available...
-if (typeof(jQuery) === "undefined")
+    if (typeof(jQuery) === "undefined")
     {
         throw new Error("jQuery is required by jByloth to be executed.");
     }
@@ -71,6 +71,31 @@ if (typeof(jQuery) === "undefined")
                 }
             };
 
+            let _loadCss = function(uri, mediaQuery)
+            {
+                // TODO: Terminare l'implementazione di questo metodo.
+                //
+                    let _link = jQuery("<link />");
+
+                    _link.attr("rel", "stylesheet");
+                    _link.attr("type", "text/css");
+                    _link.attr("href", uri);
+
+                    if (_isUndefined(mediaQuery) === false)
+                    {
+                        _link.attr("media", mediaQuery);
+                    }
+
+                    _link.on("load", function()
+                    {
+                        // TODO: Generare un evento di endLoading...
+                        //
+                            // console.debug("CSS '" + uri + "' was successfully loaded!");
+                    });
+
+                    jQuery("head").append(_link);
+            };
+
             let _onResizing = function()
             {
                 if (_isNull(_resizingTimeout) === false)
@@ -110,7 +135,7 @@ if (typeof(jQuery) === "undefined")
                     {
                         value = value.substr(1);
                     }
-                    
+
                     let _hexValue = parseInt(value, 16);
 
                     if (_hexValue.toString(16) === value.toLowerCase())
@@ -424,6 +449,11 @@ if (typeof(jQuery) === "undefined")
                     jQuery.isDomElement = function(obj)
                     {
                         return _isDomElement(obj);
+                    };
+
+                    jQuery.loadCss = function(uri, mediaQuery)
+                    {
+                        return _loadCss(uri, mediaQuery);
                     };
 
                     jQuery.parseInt = function(value)

@@ -59,6 +59,28 @@ if (typeof jQuery === "undefined") {
         }
     };
 
+    var _loadCss = function _loadCss(uri, mediaQuery) {
+        // TODO: Terminare l'implementazione di questo metodo.
+        //
+        var _link = jQuery("<link />");
+
+        _link.attr("rel", "stylesheet");
+        _link.attr("type", "text/css");
+        _link.attr("href", uri);
+
+        if (_isUndefined(mediaQuery) === false) {
+            _link.attr("media", mediaQuery);
+        }
+
+        _link.on("load", function () {
+            // TODO: Generare un evento di endLoading...
+            //
+            // console.debug("CSS '" + uri + "' was successfully loaded!");
+        });
+
+        jQuery("head").append(_link);
+    };
+
     var _onResizing = function _onResizing() {
         if (_isNull(_resizingTimeout) === false) {
             clearTimeout(_resizingTimeout);
@@ -333,6 +355,10 @@ if (typeof jQuery === "undefined") {
 
     jQuery.isDomElement = function (obj) {
         return _isDomElement(obj);
+    };
+
+    jQuery.loadCss = function (uri, mediaQuery) {
+        return _loadCss(uri, mediaQuery);
     };
 
     jQuery.parseInt = function (value) {
