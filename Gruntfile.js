@@ -39,7 +39,7 @@ module.exports = function(grunt)
             options: {
 
                 sourceMap: true,
-                presets: [ "es2015" ]
+                presets: [ "env" ]
             },
             dist: {
                 

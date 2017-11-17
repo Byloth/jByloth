@@ -17,19 +17,19 @@
 		<script src="node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="dist/jbyloth.min.js"></script>
 		<script type="text/javascript">
-			try
-			{
 				$(function()
 				{
-					let _title = "jByloth (v. " + jQuery.jByloth + ") is working!";
+					try
+					{
+						let _title = "jByloth (v. " + jQuery.jByloth + ") is working!";
 
-					$("#title").text(_title);
+						$("#title").text(_title);
+					}
+					catch (err)
+					{
+						console.error(err);
+					}
 				});
-			}
-			catch (err)
-			{
-				console.error(err);
-			}
 		</script>
 	</body>
 </html>
