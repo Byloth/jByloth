@@ -1,15 +1,14 @@
 {
-	"name": "jbyloth",
+	"name": "byloth-jbyloth",
 	"version": "1.0.1",
-	"description": "",
+	"description": "A jQuery extension with some interesting functionality used by almost every Byloth's JS projects.",
 	"keywords": [],
-	"author": "Bylothink",
+	"author": "Byloth",
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com:Byloth/jByloth.git"
 	},
-	"license": "UNLICENSED",
-	"private": true,
+	"license": "MIT",
 	"main": "index.html",
 	"dependencies": {
 		"jquery": "^3.2.1"
