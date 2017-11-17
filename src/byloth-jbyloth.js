@@ -13,7 +13,7 @@
 
         // Private single instance constants:
             const EVENT_TIMEOUT = 500;
-            const VERSION = "1.0.1";
+            const VERSION = "1.0.2";
 
         // Private single instance properties:
             let _resizingTimeout;
