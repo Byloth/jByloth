@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 		<style type="text/css">
 			body
 			{
@@ -10,26 +10,26 @@
 				text-align: center;
 			}
 		</style>
-		<title>jByloth 1.0.0</title>
+		<title>jByloth 1.0.3</title>
 	</head>
 	<body>
 		<h1 id="title">...</h1>
 		<script src="node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="dist/byloth-jbyloth.min.js"></script>
+		<script src="dist/jbyloth.min.js"></script>
 		<script type="text/javascript">
-				$(function()
+			jQuery(function()
+			{
+				try
 				{
-					try
-					{
-						let _title = "jByloth (v. " + jQuery.jByloth + ") is working!";
+					let _title = "jByloth (v. " + jQuery.jByloth + ") is working!";
 
-						$("#title").text(_title);
-					}
-					catch (err)
-					{
-						console.error(err);
-					}
-				});
+					$("#title").text(_title);
+				}
+				catch (err)
+				{
+					console.error(err);
+				}
+			});
 		</script>
 	</body>
 </html>
